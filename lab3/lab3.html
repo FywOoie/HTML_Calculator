@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Child_Math_v3</title>
+        <script>
+            var left;//left element of equation
+            var right;//right element of equation
+            var user_input="";//global variable that stores the clicks of user
+            window.onload=new_Quiz;//Generate first equation on the screen
+
+            //function that accept user input
+            function buttonPressed(buttonID){
+                var new_equ = document.getElementById("equation").innerHTML.replace("?"," ");//new equation that replace the original question mark
+                document.getElementById("equation").innerHTML = new_equ+buttonID.fontcolor("grey");//change the euqation
+                user_input=user_input+buttonID;//change the value of user_input
+            }
+
+            //function that accept enter button
+            function checkAnswer(buttonID){
+                //compare the results to check if the new euqation holds
+                if((left+right).toString()==user_input){
+                    //if equation holds, change message on the top
+                    document.getElementById("message").innerHTML = "<span style='color: green;'>Well done!</span>";
+                    this.new_Quiz();
+                }else{
+                    document.getElementById("message").innerHTML = "<span style='color: red;'>Sorry! Wrong!</span>";
+                    document.getElementById("equation").innerHTML = left.toString()+" + "+right.toString()+" = ?";//if wrong, change back
+                }
+                user_input="";//reset user_input
+            }
+
+            //give a new equation when user gives correct answer
+            function new_Quiz(){
+                left = Math.floor((Math.random() * 20) + 1);//generate random number between 1 and 20 as left element of equation
+                right = Math.floor((Math.random() * 20) + 1);//generate random number between 1 and 20 as right element of equation
+                document.getElementById("equation").innerHTML = left.toString()+" + "+right.toString()+" = ?";//new equation
+            }
+        </script>
+        <style>
+            .main{
+                width:600px;
+                height:800px;
+                padding: 0;
+                border: 3px solid #84b12b;
+                margin: 0;
+            }
+            .topBar{
+                font-family: Arial;
+                font-size: 50px;
+                font-weight: bold;
+                width:600px;
+                height:80px;
+                padding-top: 20px;
+                border: 0;
+                margin: 0;
+                color:darkorange;
+                text-align:center;
+                
+            }
+            .quiz{
+                width:600px;
+                height:120px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                border: 0;
+                margin: 0;
+                color:rgb(58, 58, 153);
+                font-size:80px;
+                font-weight: bold;
+                text-align: center;
+            }
+            .play{
+                width:600px;
+                height:550px;
+                padding: 0;
+                border: 0;
+                margin: 0;
+                text-align: center;
+            }
+            button {
+                border: none;
+                padding:none;
+                background-repeat:no-repeat;
+                width:100px;
+                height:100px;
+            }
+            button:active{
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+            button:focus{
+                outline:none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            
+            <div id="message" class="topBar">Quiz Starts!</div>
+
+            <div id="equation" class="quiz"></div>
+
+            <div class="play">
+                <button onclick="buttonPressed(this.id)" id="1" style="background: url(images/number1.png);background-size: contain;"></button>
+                <button onclick="buttonPressed(this.id)" id="2" style="background: url(images/number2.png);background-size: contain;"></button>
+                <button onclick="buttonPressed(this.id)" id="3" style="background: url(images/number3.png);background-size: contain;"></button><br />
+                <button onclick="buttonPressed(this.id)" id="4" style="background: url(images/number4.png);background-size: contain;"></button>
+                <button onclick="buttonPressed(this.id)" id="5" style="background: url(images/number5.png);background-size: contain;"></button>
+                <button onclick="buttonPressed(this.id)" id="6" style="background: url(images/number6.png);background-size: contain;"></button><br />
+                <button onclick="buttonPressed(this.id)" id="7" style="background: url(images/number7.png);background-size: contain;"></button>
+                <button onclick="buttonPressed(this.id)" id="8" style="background: url(images/number8.png);background-size: contain;"></button>
+                <button onclick="buttonPressed(this.id)" id="9" style="background: url(images/number9.png);background-size: contain;"></button><br />
+                <button onclick="buttonPressed(this.id)" id="0" style="background: url(images/number0.png);background-size: contain;"></button>
+                <button onclick="checkAnswer(this.id)" id="enter" style="background: url(images/enter.png);background-size: contain;"></button>
+            </div>
+
+        </div>
+    </body>
+</html>

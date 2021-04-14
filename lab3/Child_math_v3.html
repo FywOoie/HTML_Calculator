@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+
+    <title>
+        Child Math V3
+    </title>
+    <script>
+        var a = Math.floor(Math.random() * 10);
+        var b = Math.floor(Math.random() * (30 - a));
+        var equation = a + " + " + b + " = ?";
+        var answer = a + b;
+        function load() {
+            document.getElementById("equation").innerHTML = equation;
+        }
+        function input(input) {
+            var new_display = document.getElementById("equation").innerHTML;
+            var answer = new_display.replace(equation.substr(0, equation.length - 1), "");
+            if (answer=="?") {
+                new_display = new_display.substr(0, new_display.length - 1) + String(input);
+            }else{
+                new_display = new_display + String(input);
+            }
+            document.getElementById("equation").innerHTML = new_display;
+        }
+        function checkAnswer() {
+            var display = document.getElementById("equation").innerHTML;
+            var user_answer = display.replace(equation.substr(0, equation.length - 1), "");
+            if (user_answer == answer) {
+                document.getElementById("message").innerHTML = "<span style='color: green;'>Well done!</span>";
+                a = Math.floor(Math.random() * 10);
+                b = Math.floor(Math.random() * (30 - a));
+                equation = a + " + " + b + " = ?";
+                document.getElementById("equation").innerHTML = equation;
+                answer = a + b;
+            } else {
+                document.getElementById("message").innerHTML = "<span style='color: red;'>Sorry! Wrong!</span>";
+                document.getElementById("equation").innerHTML = equation;
+            }
+
+        }
+    </script>
+
+
+    <style>
+        .main {
+            width:600px;
+            height:800px;
+            padding: 0;
+            border: 3px solid #84b12b;
+            margin: 0;
+        }
+
+        .topBar {
+            font-family: Arial;
+                font-size: 50px;
+                font-weight: bold;
+                width:600px;
+                height:80px;
+                padding-top: 20px;
+                border: 0;
+                margin: 0;
+                color:darkorange;
+                text-align:center;
+        }
+
+        .quiz {
+            width:600px;
+            height:120px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            margin: 0;
+            color:rgb(58, 58, 153);
+            font-size:80px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .play {
+            width:600px;
+            height:550px;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            background-repeat:no-repeat;
+            border: none;
+            padding:none;
+        }
+
+        button:active {
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
+
+
+</head>
+
+<body onload="load()">
+    <div class="main">
+        <div class="topBar" id="message">
+            Quiz Start!
+        </div>
+        <div class="quiz" id="equation">
+        </div>
+        <div class="play">
+            <button id="1" onClick="input(this.id)" style="background: url(images/number1.png);background-size: contain;"></button>
+            <button id="2" onClick="input(this.id)" style="background: url(images/number2.png);background-size: contain;"></button>
+            <button id="3" onClick="input(this.id)" style="background: url(images/number3.png);background-size: contain;"></button>
+            <br>
+            <button id="4" onClick="input(this.id)" style="background: url(images/number4.png);background-size: contain;"></button>
+            <button id="5" onClick="input(this.id)" style="background: url(images/number5.png);background-size: contain;"></button>
+            <button id="6" onClick="input(this.id)" style="background: url(images/number6.png);background-size: contain;"></button>
+            <br>
+            <button id="7" onClick="input(this.id)" style="background: url(images/number7.png);background-size: contain;"></button>
+            <button id="8" onClick="input(this.id)" style="background: url(images/number8.png);background-size: contain;"></button>
+            <button id="9" onClick="input(this.id)" style="background: url(images/number9.png);background-size: contain;"></button>
+            <br>
+            <button id="0" onClick="input(this.id)" style="background: url(images/number0.png);background-size: contain;"></button>
+            <button id="enter" onClick="checkAnswer()" style="background: url(images/enter.png);background-size: contain;"></button>
+        </div>
+    </div>
+</body>
+
+</html>
